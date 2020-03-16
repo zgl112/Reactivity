@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, GridColumn, List } from "semantic-ui-react";
+import { Grid, GridColumn } from "semantic-ui-react";
 import { IActivity } from "../../../App/Models/activity";
 import { ActivityList } from "../Dashboard/ActivityList";
 import { ActivityDetails } from "../Details/ActivityDetails";
@@ -9,20 +9,50 @@ interface IProps {
   activities: IActivity[];
   selectActivity: (id: string) => void;
   selectedActivity: IActivity | null;
+  editMode: boolean;
+  setEditMode: (editMode: boolean) => void;
+  setSelectedActivity: (activity: IActivity | null) => void;
+  createActivity: (activity: IActivity) => void;
+  editActivity: (activity: IActivity) => void;
+  deleteActivity: (id: string) => void;
 }
 export const ActivityDashboard: React.FC<IProps> = ({
   activities,
   selectActivity,
-  selectedActivity
+  selectedActivity,
+  editMode,
+  setEditMode,
+  setSelectedActivity,
+  createActivity,
+  editActivity,
+  deleteActivity
 }) => {
   return (
     <Grid>
       <GridColumn width={10}>
-        <ActivityList activities={activities} selectActivity={selectActivity} />
+        <ActivityList
+          activities={activities}
+          selectActivity={selectActivity}
+          deleteActivity={deleteActivity}
+        />
       </GridColumn>
       <GridColumn width={6}>
-        {selectedActivity && <ActivityDetails activity={selectedActivity} />}
-        <ActivityForm />>
+        {selectedActivity && !editMode && (
+          <ActivityDetails
+            activity={selectedActivity}
+            setEditMode={setEditMode}
+            setSelectedActivity={setSelectedActivity}
+          />
+        )}
+        {editMode && (
+          <ActivityForm
+            key={(selectedActivity && selectedActivity.id) || 0}
+            setEditMode={setEditMode}
+            activity={selectedActivity!}
+            createActivity={createActivity}
+            editActivity={editActivity}
+          />
+        )}
       </GridColumn>
     </Grid>
   );
