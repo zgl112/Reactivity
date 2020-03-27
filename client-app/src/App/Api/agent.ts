@@ -19,7 +19,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(undefined, error => {
   if (error.message === "Network Error" && !error.respone) {
-    toast.error("Network error - One or more APIs are currently offline.");
+    toast.error("Network error - Servers are currently offline.");
   }
   const { status, data, config } = error.response;
 
@@ -74,7 +74,9 @@ const Activities = {
   create: (activity: IActivity) => requests.post("/activities", activity),
   update: (activity: IActivity) =>
     requests.put(`/activities/${activity.id}`, activity),
-  delete: (id: string) => requests.delete(`/activities/${id}`)
+  delete: (id: string) => requests.delete(`/activities/${id}`),
+  attend: (id: string) => requests.post(`/activities/${id}/attend`, {}),
+  unattend: (id: string) => requests.delete(`/activities/${id}/attend`)
 };
 
 const User = {
