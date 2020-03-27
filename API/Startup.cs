@@ -5,6 +5,7 @@ using Application.Intefaces;
 using AutoMapper;
 using Domain;
 using FluentValidation.AspNetCore;
+using Infrastructure.Photos;
 using Infrastructure.Security;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -91,7 +92,9 @@ namespace API
             });
 
             services.AddScoped<IJWTGenerator, JWTGenerator>();
+            services.AddScoped<IPhotosAccessor, PhotoAccessor>();
             services.AddScoped<IUserAccessor, UserAccessor>();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
