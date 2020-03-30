@@ -14,10 +14,10 @@ import ActivityForm from "../../Features/Activities/Form/ActivityForm";
 import ActivityDetails from "../../Features/Activities/Details/ActivityDetails";
 import NotFound from "./NotFound";
 import { ToastContainer } from "react-toastify";
-import { LoginForm } from "../../Features/User/LoginForm";
 import { RootStoreContext } from "../Stores/rootStore";
 import { LoadingComponent } from "./LoadingComponent";
 import ModalContainers from "../Common/Modals/ModalContainers";
+import ProfilePage from "../../Features/Profiles/ProfilePage";
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -52,7 +52,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                   path={["/create-activity", "/manage/:id"]}
                   component={ActivityForm}
                 />
-                <Route path="/login" component={LoginForm} />
+                <Route path="/profile/:username" component={ProfilePage} />
                 <Route component={NotFound} />
               </Switch>
             </Container>
