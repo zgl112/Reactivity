@@ -3,7 +3,7 @@ import { Grid } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import { RouteComponentProps } from "react-router-dom";
 import { LoadingComponent } from "../../../App/Layout/LoadingComponent";
-import { ActivityDetailChat } from "./ActivityDetailChat";
+import ActivityDetailChat from "./ActivityDetailChat";
 import ActivityDetailsHeader from "./ActivityDetailsHeader";
 import ActivityDetailInfo from "./ActivityDetailInfo";
 import ActivityDetailSidebar from "./ActivityDetailSidebar";
