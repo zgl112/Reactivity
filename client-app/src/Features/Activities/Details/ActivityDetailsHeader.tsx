@@ -1,5 +1,12 @@
 import React, { useContext } from "react";
-import { Segment, Image, Item, Header, Button } from "semantic-ui-react";
+import {
+  Segment,
+  Image,
+  Item,
+  Header,
+  Button,
+  ButtonGroup
+} from "semantic-ui-react";
 import { IActivity } from "../../../App/Models/activity";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
@@ -23,7 +30,12 @@ const ActivityDetailsHeader: React.FC<{ activity: IActivity }> = ({
 }) => {
   const host = activity.attendees.filter(x => x.isHost)[0];
   const rootStore = useContext(RootStoreContext);
-  const { unattendActivity, attendActivity, loading } = rootStore.activityStore;
+  const {
+    unattendActivity,
+    attendActivity,
+    loading,
+    deleteActivity
+  } = rootStore.activityStore;
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
@@ -55,14 +67,25 @@ const ActivityDetailsHeader: React.FC<{ activity: IActivity }> = ({
       </Segment>
       <Segment clearing attached="bottom">
         {activity.isHost ? (
-          <Button
-            as={Link}
-            to={`/manage/${activity.id}`}
-            color="orange"
-            floated="right"
-          >
-            Manage Event
-          </Button>
+          <ButtonGroup widths={16}>
+            <Button
+              as={Link}
+              to={`/manage/${activity.id}`}
+              color="teal"
+              floated="left"
+            >
+              Manage Event
+            </Button>
+            <Button
+              as={Link}
+              to={`/activities`}
+              color="orange"
+              onClick={e => deleteActivity(e, activity.id)}
+              floated="right"
+            >
+              Cancel Event
+            </Button>
+          </ButtonGroup>
         ) : activity.isGoing ? (
           <Button loading={loading} onClick={unattendActivity}>
             Cancel attendance
