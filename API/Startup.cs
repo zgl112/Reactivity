@@ -4,6 +4,7 @@ using API.Middleware;
 using API.SignalR;
 using Application.Activities;
 using Application.Intefaces;
+using Application.Profiles;
 using AutoMapper;
 using Domain;
 using FluentValidation.AspNetCore;
@@ -111,6 +112,7 @@ namespace API
             services.AddScoped<IJWTGenerator, JWTGenerator>();
             services.AddScoped<IPhotosAccessor, PhotoAccessor>();
             services.AddScoped<IUserAccessor, UserAccessor>();
+            services.AddScoped<IProfileReader, ProfileReader>();
             services.Configure<CloudinarySettings>(Configuration.GetSection("Cloudinary"));
         }
 

@@ -12,7 +12,9 @@ namespace Application.Activities
             CreateMap<UserActivity, AttendeeDTO>()
             .ForMember(x => x.Username, o => o.MapFrom(m => m.AppUser.UserName))
             .ForMember(x => x.Displayname, o => o.MapFrom(m => m.AppUser.DisplayName))
-            .ForMember(d => d.Image, o => o.MapFrom(s => s.AppUser.Photos.FirstOrDefault(x => x.IsMain).Url));
+            .ForMember(d => d.Image, o => o.MapFrom(s =>
+              s.AppUser.Photos.FirstOrDefault(x => x.IsMain).Url))
+              .ForMember(d => d.Following, o => o.MapFrom<FollowingResolver>());
         }
     }
 }
