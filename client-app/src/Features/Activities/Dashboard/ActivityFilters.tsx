@@ -35,7 +35,7 @@ const ActivityFilters = () => {
       </Menu>
       <Header
         icon={"calendar"}
-        attacheds
+        attached
         color={"teal"}
         content={"Select Date"}
       />
