@@ -44,6 +44,7 @@ namespace API
                 opt.UseLazyLoadingProxies();
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
+            ConfigureServices(services);
         }
         public void ConfigureProductionServices(IServiceCollection services)
         {
@@ -52,6 +53,7 @@ namespace API
                 opt.UseLazyLoadingProxies();
                 opt.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
             });
+            ConfigureServices(services);
         }
 
         public void ConfigureServices(IServiceCollection services)
