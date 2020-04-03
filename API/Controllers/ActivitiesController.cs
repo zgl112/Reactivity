@@ -41,7 +41,7 @@ namespace API.Controllers
 
         [Authorize(Policy = "IsActivityHost")]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Unit>> Edit(Guid id)
+        public async Task<ActionResult<Unit>> Delete(Guid id)
         {
             return await Mediator.Send(new Delete.Command { Id = id });
         }

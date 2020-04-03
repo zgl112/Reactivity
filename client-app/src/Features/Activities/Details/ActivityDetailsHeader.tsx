@@ -14,7 +14,7 @@ import { format } from "date-fns";
 import { RootStoreContext } from "../../../App/Stores/rootStore";
 
 const activityImageStyle = {
-  filter: "brightness(30%)"
+  filter: "brightness(40%)"
 };
 
 const activityImageTextStyle = {
@@ -77,8 +77,6 @@ const ActivityDetailsHeader: React.FC<{ activity: IActivity }> = ({
               Manage Event
             </Button>
             <Button
-              as={Link}
-              to={`/activities`}
               color="orange"
               onClick={e => deleteActivity(e, activity.id)}
               floated="right"
