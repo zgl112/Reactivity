@@ -38,7 +38,7 @@ namespace API
         }
 
         public void ConfigureDevelopmentServices(IServiceCollection services)
-s        {
+        {
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseLazyLoadingProxies();
